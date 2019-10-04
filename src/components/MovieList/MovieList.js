@@ -14,15 +14,23 @@ class MovieList extends Component {
     render() {
         let movies = this.props.reduxState.movies.map((movieItem, id) => {
         return (
-            <div key = {id}>
-                <img src={movieItem.poster}/>
+            <tr key = {id}>
+                <td>
+                    <img src={movieItem.poster} alt={movieItem.title}/>
+                </td>
+                <td className="movieTitle">
                 <h2>{movieItem.title}</h2>
-                <p>{movieItem.description}</p>                  
-            </div>
+                <p className="movieInfo">{movieItem.description}</p>
+                </td>             
+            </tr>
         )})
         return (
             <div>
-                {movies}
+                <table>
+                    <tbody>
+                        {movies}
+                    </tbody>
+                </table>
             </div>
         )
     }
