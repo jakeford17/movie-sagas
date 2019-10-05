@@ -20,16 +20,19 @@ class Details extends Component {
         this.props.dispatch({ type: 'FETCH_GENRES', payload: this.props.match.params.id })
     }
 
-    handleClick=()=>{
+    backClick=()=>{
         this.props.history.push('/');
     }
-    // edit = () =>{
-    //     this.props.history.push(`/edit/${this.props.match.params.id}`);
-    // }
+
+    editClick = () =>{
+        console.log("EDIT BUTTON CLICKED");
+        // this.props.history.push(`/edit/${this.props.match.params.id}`);
+    }
+
     render() {
         const genres = this.props.reduxState.genres.map((genre) => {
             return (
-                <li>{genre.name}</li>
+                <li key={genre.id}>{genre.name}</li>
             )
         });
         return (
@@ -37,8 +40,8 @@ class Details extends Component {
                 <div>
                     <div>
                     <h2>MOVIE DETAILS</h2>
-                    <button onClick={this.handleClick}>Back</button>
-                    {/* <button onClick={this.edit}>Edit</button> */}
+                    <button onClick={this.backClick}>Back</button>
+                    <button onClick={this.editClick}>Edit</button>
                     {this.props.reduxState.singleMovieInfo.map((movie) => {
                         return (
                             <p key={movie.id}>

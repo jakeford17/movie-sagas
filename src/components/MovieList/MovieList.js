@@ -20,7 +20,6 @@ class MovieList extends Component {
     render() {
         let movies = this.props.reduxState.movies.map((movieItem) => {
         return (
-            <Router>
             <tr key = {movieItem.id}>
                 <td>
                     <img onClick={()=>this.details(movieItem.id)} src={movieItem.poster} alt={movieItem.title}/>
@@ -30,7 +29,6 @@ class MovieList extends Component {
                 <p className="movieInfo">{movieItem.description}</p>
                 </td>             
             </tr>
-            </Router>
         )})
         return (
             <Router>
