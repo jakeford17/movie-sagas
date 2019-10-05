@@ -20,9 +20,13 @@ class Edit extends Component {
         })
     }
 
-    handleSubmit = () =>{
-        this.props.dispatch({ type: 'UPDATE_MOVIE', payload: this.state.movieEdit })
-        this.props.history.push(`/movies/${this.state.movieEdit.id}`)
+    handleCancel = () =>{
+        this.props.history.push(`/movies/${this.props.match.params.id}`)
+    }
+
+    handleSave = () =>{
+        // this.props.dispatch({ type: 'UPDATE_MOVIE', payload: this.state.movieEdit })
+        this.props.history.push(`/movies/${this.props.match.params.id}`)
     }
 
     render() {
@@ -33,6 +37,9 @@ class Edit extends Component {
                 <br/>
                 <p>Description:</p>
                 <textarea onChange = {(event) => this.handleChange(event, 'newDescription')} value = {this.state.movieEdit.newDescription}></textarea>
+                <br/><br/>
+                <button onClick = {this.handleCancel}>Cancel</button><br/>
+                <button onClick = {this.handleSave}>Save Changes</button>
             </div>
         )
     }
