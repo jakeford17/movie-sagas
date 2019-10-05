@@ -6,7 +6,8 @@ import {withRouter} from 'react-router'
 
 class Details extends Component {
     componentDidMount() {
-        this.id()
+        this.id();
+        this.genreId();
     }
 
     id = () => {
@@ -14,27 +15,44 @@ class Details extends Component {
         this.props.dispatch({ type: 'SET_DETAILS', payload: this.props.match.params.id })
     }
 
-    // handleClick=()=>{
-    //     this.props.history.push('/');
-    // }
+    genreId = () => {
+        console.log(this.props.match.params.id)
+        this.props.dispatch({ type: 'FETCH_GENRES', payload: this.props.match.params.id })
+    }
+
+    handleClick=()=>{
+        this.props.history.push('/');
+    }
     // edit = () =>{
     //     this.props.history.push(`/edit/${this.props.match.params.id}`);
     // }
     render() {
+        const genres = this.props.reduxState.genres.map((genre) => {
+            return (
+                <li>{genre.name}</li>
+            )
+        });
         return (
             <Router>
                 <div>
-                    {/* <button onClick={this.handleClick}>Back</button> */}
+                    <div>
+                    <h2>MOVIE DETAILS</h2>
+                    <button onClick={this.handleClick}>Back</button>
                     {/* <button onClick={this.edit}>Edit</button> */}
-                    {this.props.reduxState.genres.map((movie) => {
+                    {this.props.reduxState.singleMovieInfo.map((movie) => {
                         return (
-                            <li key={movie.id}>
-                                <p>Title: {movie.title}</p>
-                                <p>{movie.description}</p>
-                                <p>Genre: {movie.name}</p>
-                            </li>
+                            <p key={movie.id}>
+                                <h1>{movie.title}</h1>
+                                <span>{movie.description}</span>
+                            </p>
                         )
                     })}
+                    </div>
+
+                    <ul>
+                        Genres:
+                        {genres}
+                    </ul>
                 </div>
             </Router>
         )

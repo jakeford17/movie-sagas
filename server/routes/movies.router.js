@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     });
 })
 
-router.get('/details/:id', (req, res) => {
+router.get('/genres/:id', (req, res) => {
     const queryText = `SELECT "movies".id, "movies".title, "movies".poster, "movies".description, "genres".name FROM "movies" 
                         JOIN "movies_genres" ON "movies".id = "movies_genres".movies_id 
                         JOIN "genres" ON "movies_genres".genres_id = "genres".id 
@@ -20,6 +20,16 @@ router.get('/details/:id', (req, res) => {
       .then((result) => { res.send(result.rows); })
       .catch((err) => {
         console.log('Error in SELECT MOVIE query', err);
+        res.sendStatus(500);
+      });
+  });
+
+  router.get('/details/:id', (req, res) => {
+    const queryText = `SELECT * FROM "movies" WHERE id=$1`;
+    pool.query(queryText, [req.params.id])
+      .then((result) => { res.send(result.rows); })
+      .catch((err) => {
+        console.log('Error in SELECT MOVIE quiery', err);
         res.sendStatus(500);
       });
   });
