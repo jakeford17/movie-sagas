@@ -26,7 +26,7 @@ class Details extends Component {
 
     editClick = () =>{
         console.log("EDIT BUTTON CLICKED");
-        // this.props.history.push(`/edit/${this.props.match.params.id}`);
+        this.props.history.push(`/edit/${this.props.match.params.id}`);
     }
 
     render() {
