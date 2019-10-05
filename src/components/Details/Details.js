@@ -11,12 +11,10 @@ class Details extends Component {
     }
 
     id = () => {
-        console.log(this.props.match.params.id)
         this.props.dispatch({ type: 'SET_DETAILS', payload: this.props.match.params.id })
     }
 
     genreId = () => {
-        console.log(this.props.match.params.id)
         this.props.dispatch({ type: 'FETCH_GENRES', payload: this.props.match.params.id })
     }
 

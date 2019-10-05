@@ -29,7 +29,23 @@ router.get('/genres/:id', (req, res) => {
     pool.query(queryText, [req.params.id])
       .then((result) => { res.send(result.rows); })
       .catch((err) => {
-        console.log('Error in SELECT MOVIE quiery', err);
+        console.log('Error in SELECT MOVIE query', err);
+        res.sendStatus(500);
+      });
+  });
+
+  router.put('/', (req, res) => {
+    const updatedMovie = req.body;
+    const queryText = `UPDATE "movies" SET "title" = $1, "description" = $2 WHERE "id" = $3;`;
+    const queryValues = [
+      updatedMovie.newTitle,
+      updatedMovie.newDescription,
+      updatedMovie.id,
+    ];
+    pool.query(queryText, queryValues)
+      .then(() => { res.sendStatus(200); })
+      .catch((err) => {
+        console.log('Error completing UPDATE MOVIE query', err);
         res.sendStatus(500);
       });
   });

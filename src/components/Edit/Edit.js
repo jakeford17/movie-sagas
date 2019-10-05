@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router'
 
@@ -7,7 +6,8 @@ class Edit extends Component {
     state = {
         movieEdit: {
             newTitle: '',
-            newDescription: ''
+            newDescription: '',
+            id: this.props.match.params.id
         }
     }
     
@@ -25,7 +25,7 @@ class Edit extends Component {
     }
 
     handleSave = () =>{
-        // this.props.dispatch({ type: 'UPDATE_MOVIE', payload: this.state.movieEdit })
+        this.props.dispatch({ type: 'UPDATE_MOVIE', payload: this.state.movieEdit })
         this.props.history.push(`/movies/${this.props.match.params.id}`)
     }
 

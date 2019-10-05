@@ -18,6 +18,15 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies);
     yield takeEvery('FETCH_GENRES', fetchGenres);
     yield takeEvery('SET_DETAILS', setMovieDetail);
+    yield takeEvery('UPDATE_MOVIE', updateMovie);
+}
+
+function* updateMovie(action) {
+    try {
+        yield axios.put('/movies', action.payload);
+    } catch (error) {
+        console.log('error while updating movie', error)
+    }
 }
 
 function* fetchMovies() {
@@ -25,12 +34,11 @@ function* fetchMovies() {
         const response = yield axios.get('/movies');
         yield put({ type: 'SET_MOVIES', payload: response.data });
     } catch (error) {
-        console.log('error while fetching elements', error)
+        console.log('error while fetching movies', error)
     }
 }
 
 function* setMovieDetail(action){
-    console.log(action.payload)
     try{
       const response = yield axios.get('/movies/details/'+ action.payload);
       yield put({type: 'ONE_MOVIE_INFO', payload: response.data})
