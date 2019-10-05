@@ -5,9 +5,6 @@ import {withRouter} from 'react-router'
 
 
 class Details extends Component {
-    state = {
-        movie: []
-    }
     componentDidMount() {
         this.id()
     }
@@ -17,9 +14,9 @@ class Details extends Component {
         this.props.dispatch({ type: 'SET_DETAILS', payload: this.props.match.params.id })
     }
 
-    handleClick=()=>{
-        this.props.history.push('/');
-    }
+    // handleClick=()=>{
+    //     this.props.history.push('/');
+    // }
     // edit = () =>{
     //     this.props.history.push(`/edit/${this.props.match.params.id}`);
     // }
@@ -27,15 +24,15 @@ class Details extends Component {
         return (
             <Router>
                 <div>
-                    <h2>MOVIE DETAILS</h2>
-                    <button onClick={this.handleClick}>Back</button>
+                    {/* <button onClick={this.handleClick}>Back</button> */}
                     {/* <button onClick={this.edit}>Edit</button> */}
-                    {this.props.reduxState.singleMovieInfo.map((movie) => {
+                    {this.props.reduxState.genres.map((movie) => {
                         return (
-                            <p key={movie.id}>
-                                <h1>{movie.title}</h1>
-                                <span>{movie.description}</span>
-                            </p>
+                            <li key={movie.id}>
+                                <p>Title: {movie.title}</p>
+                                <p>{movie.description}</p>
+                                <p>Genre: {movie.name}</p>
+                            </li>
                         )
                     })}
                 </div>
@@ -43,6 +40,7 @@ class Details extends Component {
         )
     }
 }
+
 const mapStateToProps = reduxState => ({
     reduxState,
 });

@@ -41,21 +41,12 @@ const movies = (state = [], action) => {
 }
 
 function* setMovieDetail(action){
-    console.log(action.payload)
+    console.log("ACTION.PAYLOAD", action.payload)
     try{
-      const response = yield axios.get('/movies/details/'+ action.payload);
-      yield put({type: 'ONE_MOVIE_INFO', payload: response.data})
+      const response = yield axios.get('/movies/details/' + action.payload);
+      yield put({type: 'SET_GENRES', payload: response.data})
     }catch(err){
       console.log(err);
-    }
-  }
-  
-  const singleMovieInfo = (state=[], action)=>{
-    switch(action.type){
-      case 'ONE_MOVIE_INFO':
-        return action.payload
-      default:
-        return state
     }
   }
 
@@ -73,7 +64,6 @@ const genres = (state = [], action) => {
 const storeInstance = createStore(
     combineReducers({
         movies,
-        singleMovieInfo,
         genres,
     }),
     // Add sagaMiddleware to our store
