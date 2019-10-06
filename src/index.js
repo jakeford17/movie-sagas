@@ -38,23 +38,23 @@ function* fetchMovies() {
     }
 }
 
-function* setMovieDetail(action){
-    try{
-      const response = yield axios.get('/movies/details/'+ action.payload);
-      yield put({type: 'ONE_MOVIE_INFO', payload: response.data})
-    }catch(err){
-      console.log(err);
+function* setMovieDetail(action) {
+    try {
+        const response = yield axios.get('/movies/details/' + action.payload);
+        yield put({ type: 'ONE_MOVIE_INFO', payload: response.data })
+    } catch (err) {
+        console.log(err);
     }
-  }
+}
 
-function* fetchGenres(action){
-    try{
-      const response = yield axios.get('/movies/genres/' + action.payload);
-      yield put({type: 'SET_GENRES', payload: response.data})
-    }catch(err){
-      console.log(err);
+function* fetchGenres(action) {
+    try {
+        const response = yield axios.get('/movies/genres/' + action.payload);
+        yield put({ type: 'SET_GENRES', payload: response.data })
+    } catch (err) {
+        console.log(err);
     }
-  }
+}
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -68,14 +68,14 @@ const movies = (state = [], action) => {
     }
 }
 
-const singleMovieInfo = (state=[], action)=>{
-    switch(action.type){
-      case 'ONE_MOVIE_INFO':
-        return action.payload
-      default:
-        return state
+const singleMovieInfo = (state = [], action) => {
+    switch (action.type) {
+        case 'ONE_MOVIE_INFO':
+            return action.payload
+        default:
+            return state
     }
-  }
+}
 
 // Used to store the movie genres
 const genres = (state = [], action) => {
@@ -101,6 +101,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
     document.getElementById('root'));
 registerServiceWorker();
