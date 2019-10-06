@@ -29,7 +29,7 @@ class Details extends Component {
     render() {
         const genres = this.props.reduxState.genres.map((genre) => {
             return (
-                <li key={genre.id}>{genre.name}</li>
+                <span className="genreListItem" key={genre.id}>{genre.name}<br /></span>
             )
         });
         return (
@@ -37,22 +37,26 @@ class Details extends Component {
                 <div>
                     <div>
                         <h2>MOVIE DETAILS</h2>
-                        <button onClick={this.backClick}>Back</button>
-                        <button onClick={this.editClick}>Edit</button>
                         {this.props.reduxState.singleMovieInfo.map((movie) => {
                             return (
                                 <p key={movie.id}>
                                     <h1>{movie.title}</h1>
                                     <span>{movie.description}</span>
+                                    <br /><br />
+                                    <span><strong>GENRES:</strong><br />
+                                        {genres}
+                                    </span>
                                 </p>
                             )
                         })}
                     </div>
 
-                    <ul>
+                    {/* <ul>
                         Genres:
                         {genres}
-                    </ul>
+                    </ul> */}
+                    <button onClick={this.backClick}>Back</button>
+                    <button onClick={this.editClick}>Edit</button>
                 </div>
             </Router>
         )

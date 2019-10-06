@@ -12,12 +12,14 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <h1>Movie List</h1>
+            <span className="headerH1">MOVIE LIST</span>
           </header>
-          <br />
-          <Route path="/" exact component={Home} />
-          <Route path='/movies/:id' render={({ match }) => <Details match={match} />} />
-          <Route path='/edit/:id' render={({ match }) => <Edit match={match} />} />
+          <div className="content">
+            <br />
+            <Route path="/" exact component={Home} />
+            <Route path='/movies/:id' render={({ match }) => <Details match={match} />} />
+            <Route path='/edit/:id' render={({ match }) => <Edit match={match} />} />
+          </div>
         </div>
       </Router>
     );

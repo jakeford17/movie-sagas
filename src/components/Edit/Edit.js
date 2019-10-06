@@ -41,10 +41,11 @@ class Edit extends Component {
                 {this.props.reduxState.singleMovieInfo.map((movie) => {
                     return (
                         <div key={movie.id}>
-                            <h1>Title</h1>
-                            <input onChange={(event) => this.handleChange(event, 'newTitle')} defaultValue={movie.title}></input>
+                            <h2>EDIT MOVIE</h2>
+                            <h2>Title</h2>
+                            <input className="editInput" onChange={(event) => this.handleChange(event, 'newTitle')} defaultValue={movie.title}></input>
                             <h2>Description</h2>
-                            <textarea onChange={(event) => this.handleChange(event, 'newDescription')} defaultValue={movie.description}></textarea>
+                            <textarea className="editTextarea" onChange={(event) => this.handleChange(event, 'newDescription')} defaultValue={movie.description}></textarea>
                         </div>
                     )
                 })}

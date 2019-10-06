@@ -21,14 +21,6 @@ function* rootSaga() {
     yield takeEvery('UPDATE_MOVIE', updateMovie);
 }
 
-function* updateMovie(action) {
-    try {
-        yield axios.put('/movies', action.payload);
-    } catch (error) {
-        console.log('error while updating movie', error)
-    }
-}
-
 function* fetchMovies() {
     try {
         const response = yield axios.get('/movies');
@@ -55,6 +47,15 @@ function* fetchGenres(action) {
         console.log(err);
     }
 }
+
+function* updateMovie(action) {
+    try {
+        yield axios.put('/movies', action.payload);
+    } catch (error) {
+        console.log('error while updating movie', error)
+    }
+}
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -68,9 +69,19 @@ const movies = (state = [], action) => {
     }
 }
 
+//Used to store the info of a selected movie
 const singleMovieInfo = (state = [], action) => {
     switch (action.type) {
         case 'ONE_MOVIE_INFO':
+            return action.payload
+        default:
+            return state
+    }
+}
+
+const updatedMovieInfo = (state = [], action) => {
+    switch (action.type) {
+        case 'HOLD_MOVIE':
             return action.payload
         default:
             return state
@@ -93,6 +104,7 @@ const storeInstance = createStore(
         movies,
         genres,
         singleMovieInfo,
+        updatedMovieInfo
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

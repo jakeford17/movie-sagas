@@ -22,7 +22,7 @@ class MovieList extends Component {
             return (
                 <tr key={movieItem.id}>
                     <td>
-                        <img onClick={() => this.details(movieItem.id)} src={movieItem.poster} alt={movieItem.title} />
+                        <img className="posterElement" onClick={() => this.details(movieItem.id)} src={movieItem.poster} alt={movieItem.title} />
                     </td>
                     <td className="movieTitle">
                         <h2>{movieItem.title}</h2>

@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch&display=swap');
+
 .App {
   text-align: center;
 }
 
-
 .App-header {
-  background-color: #222;
-  height: 60px;
+  background-image: url(https://i0.wp.com/headsup.boyslife.org/files/2017/01/3020051-poster-1280-popcorn.jpg);
+  height: 50px;
+  width: 100%;
   padding: 20px;
-  color: white;
+  color: black;
 }
 
 .App-title {
@@ -18,16 +20,68 @@
   font-size: large;
 }
 
+button{
+  font-family: 'Cabin Sketch', cursive;
+  height: 35px;
+  width: 100px;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin: 5px;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+.content{
+  width: 80%;
+  margin: auto;
+  font-family: 'Cabin Sketch', cursive;
+}
+
+.editInput{
+  width: 500px;
+  height: 20px;
+  text-align: center;
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 1.2em;
+}
+
+.editTextarea{
+  width: 500px;
+  height: 200px;
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 1.2em;
+}
+
+.genreListItem{
+  list-style-type: none;
+}
+
+.headerH1{
+  font-size: 3.25em;
+  font-weight: 900;
+  font-family: 'Cabin Sketch', cursive;
+  text-shadow: 1px 1px;
+}
+
 .movieTitle{
   vertical-align: top; 
 }
 
 .movieInfo{
   text-align: left;
-  padding: 8px;
+  padding: 10px;
+  margin-left: 7px;
 }
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.posterElement:hover{
+  border: 1.5px solid black;
+  box-shadow: 10px 10px 8px #888888;
+  cursor: pointer;
 }
