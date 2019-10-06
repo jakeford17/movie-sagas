@@ -14,7 +14,7 @@ class MovieList extends Component {
     }
 
     details = (id) => {
-        this.props.history.push(`/movies/${id}`)
+        this.props.history.push(`/details/${id}`)
     }
 
     render() {

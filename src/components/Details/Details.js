@@ -43,7 +43,7 @@ class Details extends Component {
                                     <h1>{movie.title}</h1>
                                     <span>{movie.description}</span>
                                     <br /><br />
-                                    <span><strong>GENRES:</strong><br />
+                                    <span><h2>GENRES:</h2>
                                         {genres}
                                     </span>
                                 </p>

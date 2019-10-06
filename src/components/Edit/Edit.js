@@ -21,7 +21,7 @@ class Edit extends Component {
     }
 
     handleDetails = () => {
-        this.props.history.push(`/movies/${this.props.match.params.id}`)
+        this.props.history.push(`/details/${this.props.match.params.id}`)
     }
 
     handleSave = () => {

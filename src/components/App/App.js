@@ -17,7 +17,7 @@ class App extends Component {
           <div className="content">
             <br />
             <Route path="/" exact component={Home} />
-            <Route path='/movies/:id' render={({ match }) => <Details match={match} />} />
+            <Route path='/details/:id' render={({ match }) => <Details match={match} />} />
             <Route path='/edit/:id' render={({ match }) => <Edit match={match} />} />
           </div>
         </div>

@@ -6,9 +6,9 @@
 
 .App-header {
   background-image: url(https://i0.wp.com/headsup.boyslife.org/files/2017/01/3020051-poster-1280-popcorn.jpg);
-  height: 50px;
+  height: 100px;
+  padding-top: 40px;
   width: 100%;
-  padding: 20px;
   color: black;
 }
 
@@ -22,7 +22,8 @@
 
 button{
   font-family: 'Cabin Sketch', cursive;
-  height: 35px;
+  font-size: 1.25em;
+  height: 45px;
   width: 100px;
   border-radius: 10px;
   border: 1px solid black;
@@ -34,7 +35,7 @@ button:hover{
 }
 
 .content{
-  width: 80%;
+  width: 70%;
   margin: auto;
   font-family: 'Cabin Sketch', cursive;
 }
@@ -59,7 +60,7 @@ button:hover{
 }
 
 .headerH1{
-  font-size: 3.25em;
+  font-size: 4em;
   font-weight: 900;
   font-family: 'Cabin Sketch', cursive;
   text-shadow: 1px 1px;
