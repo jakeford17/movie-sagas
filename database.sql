@@ -37,6 +37,10 @@ WHERE "movies".id = $1;
 -- Query used in PUT to update a movie's title and description
 UPDATE "movies" SET "title" = $1, "description" = $2 WHERE "id" = $3;
 
+-- Query used in Postico to add genre values to different movies
+INSERT INTO "movies_genres" ("movies_id", "genres_id")
+VALUES (1,1), (1,3), (1,4), (2, 1), (3, 11), (3, 12);
+
 --------[ DATA! ]---------
 
 -- starter movies
