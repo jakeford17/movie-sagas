@@ -21,6 +21,7 @@ function* rootSaga() {
     yield takeEvery('UPDATE_MOVIE', updateMovie);
 }
 
+// Generator function to GET movies and store in the movies reducer
 function* fetchMovies() {
     try {
         const response = yield axios.get('/movies');
@@ -30,6 +31,7 @@ function* fetchMovies() {
     }
 }
 
+// Generator function to GET a single movie based on ID and store in the singleMovieInfo reducer
 function* setMovieDetail(action) {
     try {
         const response = yield axios.get('/movies/details/' + action.payload);
@@ -39,6 +41,7 @@ function* setMovieDetail(action) {
     }
 }
 
+// Generator function to GET genres from a specific movie based on ID and store in the genres reducer
 function* fetchGenres(action) {
     try {
         const response = yield axios.get('/movies/genres/' + action.payload);
@@ -48,6 +51,7 @@ function* fetchGenres(action) {
     }
 }
 
+// Generator function that uses a PUT to update the title and description of one movie based on ID
 function* updateMovie(action) {
     try {
         yield axios.put('/movies', action.payload);
@@ -79,15 +83,6 @@ const singleMovieInfo = (state = [], action) => {
     }
 }
 
-const updatedMovieInfo = (state = [], action) => {
-    switch (action.type) {
-        case 'HOLD_MOVIE':
-            return action.payload
-        default:
-            return state
-    }
-}
-
 // Used to store the movie genres
 const genres = (state = [], action) => {
     switch (action.type) {
@@ -104,7 +99,6 @@ const storeInstance = createStore(
         movies,
         genres,
         singleMovieInfo,
-        updatedMovieInfo
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

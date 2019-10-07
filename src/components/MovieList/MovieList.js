@@ -2,22 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import { withRouter } from 'react-router'
-// import axios from 'axios';
 
 class MovieList extends Component {
+    // Function that runs on page load, eventually triggering the rendering of movies list
     componentDidMount() {
         this.getMovies();
     }
 
+    // Function that runs on page load that dipatches to GET generator function
+    // This will put movies in movies reducer, which is accessed below
     getMovies() {
         this.props.dispatch({ type: 'FETCH_MOVIES' });
     }
 
+    // Function takes a movie's ID and re-directs to /details page with the movie's id number
     details = (id) => {
         this.props.history.push(`/details/${id}`)
     }
 
     render() {
+        // Mapping through movies reducer to make rows with movie posters/info to display in table on DOM
         let movies = this.props.reduxState.movies.map((movieItem) => {
             return (
                 <tr key={movieItem.id}>
