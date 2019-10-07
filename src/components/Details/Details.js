@@ -9,6 +9,11 @@ class Details extends Component {
         this.getAllInfo();
     }
 
+    // Function that runs on page load and updates with new info from the database
+    componentDidUpdate() {
+        this.props.dispatch({ type: 'SET_DETAILS', payload: this.props.match.params.id })
+    }
+
     // Dispatching to store to all us to access our singleMovieInfo and genres reducers
     getAllInfo = () => {
         this.props.dispatch({ type: 'SET_DETAILS', payload: this.props.match.params.id })
