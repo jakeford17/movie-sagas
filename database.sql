@@ -22,6 +22,21 @@ CREATE TABLE "movies_genres" (
   "genres_id" INT REFERENCES "genres"
 );
 
+-- Query to select all movies (putting them in alphabetical order by title)
+SELECT * FROM "movies" ORDER BY "title";
+
+-- Query to select all info from a specific movie base on ID
+SELECT * FROM "movies" WHERE id=$1
+
+-- Query used to get a specific movie's info, including genres
+SELECT "movies".id, "movies".title, "movies".poster, "movies".description, "genres".name FROM "movies" 
+JOIN "movies_genres" ON "movies".id = "movies_genres".movies_id 
+JOIN "genres" ON "movies_genres".genres_id = "genres".id 
+WHERE "movies".id = $1;
+
+-- Query used in PUT to update a movie's title and description
+UPDATE "movies" SET "title" = $1, "description" = $2 WHERE "id" = $3;
+
 --------[ DATA! ]---------
 
 -- starter movies
