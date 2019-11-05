@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router } from 'react-router-dom';
 import { withRouter } from 'react-router'
 
 class MovieList extends Component {
@@ -37,15 +36,13 @@ class MovieList extends Component {
             )
         })
         return (
-            <Router>
-                <div>
-                    <table>
-                        <tbody>
-                            {movies}
-                        </tbody>
-                    </table>
-                </div>
-            </Router>
+            <div>
+                <table>
+                    <tbody>
+                        {movies}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }

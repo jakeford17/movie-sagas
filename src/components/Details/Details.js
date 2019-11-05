@@ -9,9 +9,11 @@ class Details extends Component {
         this.getAllInfo();
     }
 
-    // Function that runs on page load and updates with new info from the database
-    componentDidUpdate() {
-        this.props.dispatch({ type: 'SET_DETAILS', payload: this.props.match.params.id })
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.userID !== prevProps.userID) {
+            this.props.dispatch({ type: 'SET_DETAILS', payload: this.props.match.params.id })
+        }
     }
 
     // Dispatching to store to all us to access our singleMovieInfo and genres reducers
@@ -38,30 +40,28 @@ class Details extends Component {
             )
         });
         return (
-            <Router>
+            <div>
                 <div>
-                    <div>
-                        <h2>MOVIE DETAILS</h2>
-                        {/* Mapping through the reducer that only contains info for movie with specific ID*/}
-                        {/* Displaying movie title and description */}
-                        {this.props.reduxState.singleMovieInfo.map((movie) => {
-                            return (
-                                <p key={movie.id}>
-                                    <h1>{movie.title}</h1>
-                                    <span>{movie.description}</span>
-                                    <br /><br />
-                                    <span><h2>GENRES:</h2>
-                                        {genres}
-                                    </span>
-                                </p>
-                            )
-                        })}
-                    </div>
-                    {/* Buttons that trigger functions that bring user to Home or Edit page */}
-                    <button onClick={this.backClick}>Back</button><br/>
-                    <button onClick={this.editClick}>Edit</button>
+                    <h2>MOVIE DETAILS</h2>
+                    {/* Mapping through the reducer that only contains info for movie with specific ID*/}
+                    {/* Displaying movie title and description */}
+                    {this.props.reduxState.singleMovieInfo.map((movie) => {
+                        return (
+                            <p key={movie.id}>
+                                <h1>{movie.title}</h1>
+                                <span>{movie.description}</span>
+                                <br /><br />
+                                <span><h2>GENRES:</h2>
+                                    {genres}
+                                </span>
+                            </p>
+                        )
+                    })}
                 </div>
-            </Router>
+                {/* Buttons that trigger functions that bring user to Home or Edit page */}
+                <button onClick={this.backClick}>Back</button><br />
+                <button onClick={this.editClick}>Edit</button>
+            </div>
         )
     }
 }
